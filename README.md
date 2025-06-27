@@ -57,8 +57,8 @@ This project is ideal for environmental monitoring teams, citizen science progra
 
 1. Clone this repo:
 ```bash
-git clone https://github.com/yourusername/detsu.git
-cd detsu
+git clone https://github.com/salmanman0/deteksi-sungai.git
+cd deteksi-sungai
 ```
 
 2. Install dependencies:
