@@ -20,21 +20,21 @@
 ## 📁 Project Structure
 
 ```
-📦 your_project
-├── app.py                # Main Flask application
-├── model_deteksi_sungai.h5  # Trained CNN model
-├── templates/            # HTML templates
+deteksi-sungai
+├── app.py                    # Main Flask application
+├── model_deteksi_sungai.h5   # Trained CNN model
+├── templates/                # HTML templates
 │   ├── index.html
 │   └── hasil.html
 ├── static/
 │   ├── hasil/
-│   │   ├── bersih/       # Classified clean river images
-│   │   └── tercemar/     # Classified polluted river images
+│   │   ├── bersih/           # Classified clean river images
+│   │   └── tercemar/         # Classified polluted river images
 │   ├── js/
 │   └── logo.png
-├── uploads/              # Temporary upload folder
-├── temp_extracted/       # Temporary extracted images
-└── README.md             # Project README
+├── uploads/                  # Temporary upload folder
+├── temp_extracted/           # Temporary extracted images
+└── README.md                 # Project README
 ```
 
 ## 🖼️ How It Works
