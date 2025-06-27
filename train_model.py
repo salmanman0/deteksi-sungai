@@ -6,7 +6,7 @@ import numpy as np
 import os
 
 # Path dataset
-data_dir = '../dataset_sungai'
+data_dir = 'dataset_sungai'
 
 # Preprocessing dengan augmentasi data dan validasi split
 datagen = ImageDataGenerator(
