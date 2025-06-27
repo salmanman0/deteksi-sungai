@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detsu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+</head>
+<body class="bg-stone-100 w-screen h-screen">
+  <nav>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="" class="h-16 mx-4 mt-4">
+  </nav>
+  <div class="w-full h-2/3 flex items-start justify-center px-4">
+    <div class="flex flex-col items-center text-center max-w-xl w-full">
+      <div class="flex flex-row items-center">
+        <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-2">DETSU</h1>
+      </div>
+      <p class="text-lg font-light text-gray-700 mb-8">
+        Deteksi Sungai Secara Banyak Menggunakan dan Kelompokkan Hasilnya!
+      </p>
+      <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data" class="w-full space-y-4">
+        <!-- Dropzone -->
+        <div id="dropzone" class="relative w-full h-48 border-2 border-dashed border-gray-400 rounded-xl bg-gray-50 hover:bg-gray-100 transition duration-200 flex flex-col items-center justify-center cursor-pointer">
+          <input id="zipfile" name="zipfile" type="file" accept=".zip" class="absolute inset-0 opacity-0 z-10 cursor-pointer" required>
+          <div id="dropzoneText" class="z-0 pointer-events-none text-center">
+            <svg id="iconDropZone" class="w-10 h-10 text-amber-500 mb-2 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 15a4 4 0 004 4h10a4 4 0 004-4M7 10l5-5m0 0l5 5m-5-5v12"/>
+            </svg>
+            <p class="text-sm text-gray-600" id="textDropZone1">Klik atau tarik file ZIP ke sini</p>
+            <p class="text-xs text-gray-500" id="textDropZone2">(hanya file .zip)</p>
+            <div id="filename" class="text-xl font-medium text-gray-700 font-medium w-full text-center px-2 truncate">
+            </div>
+          </div>
+        </div>
+      
+        <!-- Tombol Submit -->
+        <button id="submitBtn" type="submit"
+                class="w-full bg-stone-300 text-white py-3 px-6 rounded-xl font-medium shadow transition duration-200 cursor-not-allowed"
+                disabled>
+          Upload & Proses
+        </button>
+      </form>
+      
+                  
+    </div>
+</div>
+<div class="h-[1px] w-screen border border-dashed border-stone-400 my-8"></div>
+<div class="flex flex-col w-full h-2/5 justify-start items-center">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Kenapa Harus Detsu?</h1>
+
+  <div class="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center px-4 mb-4">
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-amber-300 transition duration-200 flex flex-col items-center">
+      <div class="w-12 h-12 mb-4 bg-amber-200 text-white rounded-full flex items-center justify-center font-bold text-lg">💧</div>
+      <p class="text-md font-semibold text-gray-800 mb-1">Deteksi Cerdas</p>
+      <p class="text-sm text-gray-600">Membedakan sungai bersih & tercemar hanya dari gambar? Detsu bisa!</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-amber-300 transition duration-200 flex flex-col items-center">
+      <div class="w-12 h-12 mb-4 bg-amber-200 text-white rounded-full flex items-center justify-center font-bold text-lg">⚡</div>
+      <p class="text-md font-semibold text-gray-800 mb-1">Upload Sekaligus</p>
+      <p class="text-sm text-gray-600">Masukkan semua gambar ke dalam satu ZIP — Detsu proses semuanya otomatis.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-amber-300 transition duration-200 flex flex-col items-center">
+      <div class="w-12 h-12 mb-4 bg-amber-200 text-white rounded-full flex items-center justify-center font-bold text-lg">🧠</div>
+      <p class="text-md font-semibold text-gray-800 mb-1">Kelompokkan Otomatis</p>
+      <p class="text-sm text-gray-600">Hasil deteksi langsung dikelompokkan berdasarkan kategori sungai.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-amber-300 transition duration-200 flex flex-col items-center">
+      <div class="w-12 h-12 mb-4 bg-amber-200 text-white rounded-full flex items-center justify-center font-bold text-lg">🚀</div>
+      <p class="text-md font-semibold text-gray-800 mb-1">Cepat & Mudah</p>
+      <p class="text-sm text-gray-600">Antarmuka simpel, cocok untuk semua kalangan. Tinggal klik, upload, beres!</p>
+    </div>
+  </div>
+</div>
+<footer class="bg-stone-50 border-t mt-16 py-4 text-center text-sm text-gray-500">
+  &copy; 2025 DETSU. All rights reserved.
+</footer>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+</html>

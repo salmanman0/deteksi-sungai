@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil Deteksi Sungai</title>
+  <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-stone-100 min-h-screen font-inter flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-stone-50 shadow py-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-3xl sm:text-4xl font-bold  text-gray-900">Hasil Deteksi Sungai</h1>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-10">
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-green-700 mb-5 border-l-4 border-green-500 pl-4">Sungai Bersih</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {% for file in os.listdir('static/hasil/bersih') %}
+        <div class="bg-white rounded-xl overflow-hidden shadow hover:shadow-md transition">
+          <div class="overflow-hidden cursor-pointer">
+            <img src="{{ url_for('static', filename='hasil/bersih/' + file) }}"
+                 onclick="openModal(this.src)"
+                 class="w-full h-40 object-cover transform transition-transform duration-300 hover:scale-110 rounded-t-xl"
+                 alt="{{ file }}">
+          </div>
+          <div class="p-4">
+            {% set nama_sungai = file.split('_', 1)[1].rsplit('.', 1)[0] %}
+            <p class="text-sm font-semibold text-gray-800 truncate">{{ nama_sungai }}</p>
+            <span class="mt-2 inline-block text-xs font-medium text-green-800 bg-green-100 px-2 py-1 rounded-full">
+              Sungai Bersih
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <div class="w-9/11 h-[1px] bg-stone-300 mb-4"></div>
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-red-700 mb-5 border-l-4 border-red-500 pl-4">Sungai Tercemar</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {% for file in os.listdir('static/hasil/tercemar') %}
+        <div class="bg-white rounded-xl overflow-hidden shadow hover:shadow-md transition">
+          <div class="overflow-hidden cursor-pointer">
+            <img src="{{ url_for('static', filename='hasil/tercemar/' + file) }}"
+                 onclick="openModal(this.src)"
+                 class="w-full h-40 object-cover transform transition-transform duration-300 hover:scale-110 rounded-t-xl"
+                 alt="{{ file }}">
+          </div>
+          <div class="p-4">
+            {% set nama_sungai = file.split('_', 1)[1].rsplit('.', 1)[0] %}
+            <p class="text-sm font-semibold text-gray-800 truncate">{{ nama_sungai }}</p>
+            <span class="mt-2 inline-block text-xs font-medium text-red-800 bg-red-100 px-2 py-1 rounded-full">
+              Sungai Tercemar
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+      <form action="/download" method="post">
+        <button type="submit" class="w-full sm:w-auto bg-amber-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-amber-600 transition duration-200 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v6m0 0l-3-3m3 3l3-3m-6-6h6"></path>
+          </svg>
+          Download Semua Hasil
+        </button>
+      </form>
+      <form action="/clear" method="post">
+        <button type="submit" class="w-full sm:w-auto bg-gray-300 text-gray-800 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-400 transition duration-200 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Kembali ke Home
+        </button>
+      </form>
+    </div>
+
+
+    <!-- Modal Preview Gambar -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+      <div class="relative max-w-4xl w-full p-4">
+        <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+        <img id="modalImage" src="" alt="Preview" class="w-full max-h-[80vh] object-contain rounded-lg shadow-lg">
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-stone-50 border-t mt-16 py-4 text-center text-sm text-gray-500">
+    &copy; 2025 DETSU. All rights reserved.
+  </footer>
+  <script src="{{ url_for('static', filename='js/hasil.js') }}"></script>
+
+  
+</body>
+</html>
